@@ -21,3 +21,21 @@ from csu_radartools import (csu_fhc, csu_liquid_ice_mass, csu_blended_rain, csu_
                             csu_kdp, csu_misc)
 
 For help information do help on individual modules. There is also a demonstration IPython notebook in the notebooks directory that covers all the modules. 
+
+INSTALL NOTE:
+On El Capitan, there has been an issue noted with missing libraries resulting in the following error:
+
+ld: library not found for -lbundle1.o
+collect2: error: ld returned 1 exit status
+ld: library not found for -lbundle1.o
+collect2: error: ld returned 1 exit status
+error: Command "/usr/local/bin/gfortran -Wall -g -m64 -Wall -g -undefined dynamic_lookup -bundle build/temp.macosx-10.5-x86_64-2.7/build/src.macosx-10.5-x86_64-2.7/calc_kdp_ray_firmodule.o build/temp.macosx-10.5-x86_64-2.7/build/src.macosx-10.5-x86_64-2.7/fortranobject.o build/temp.macosx-10.5-x86_64-2.7/csu_radartools/calc_kdp_ray_fir.o build/temp.macosx-10.5-x86_64-2.7/build/src.macosx-10.5-x86_64-2.7/calc_kdp_ray_fir-f2pywrappers.o -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin14/5.2.0 -L/Users/brodyfuchs-macbook/anaconda/lib -lgfortran -o build/lib.macosx-10.5-x86_64-2.7/calc_kdp_ray_fir.so" failed with exit status 1
+
+The solution was to run:
+
+xcode-select --install
+
+which fixes some symbolic links related to Fortran and the calc_kdp routine.
+
+
+
